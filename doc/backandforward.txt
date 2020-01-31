@@ -1,0 +1,91 @@
+*backandforward.txt*	Adds |:Back| and |:Forward| commands.
+
+
+Author : Bakudankun
+License: The Unlicense
+
+
+==============================================================================
+CONTENTS					*backandforward-contents*
+
+INTRODUCTION					|backandforward|
+REQUIREMENTS					|backandforward-requirements|
+COMMANDS					|backandforward-commands|
+OPTIONS						|backandforward-options|
+MAPPINGS					|backandforward-mappings|
+MAYBE FAQ					|backandforward-faq|
+
+
+==============================================================================
+INTRODUCTION					*backandforward*
+
+BackAndForward is a simple plugin that adds |:Back| and |:Forward| commands
+that do |CTRL-O| and |CTRL-I|, but in buffer units. They are like going back
+and forward in web browsers. Also, <A-Left> and <A-Right> are mapped to go
+back and forward by default.
+
+
+==============================================================================
+COMMANDS					*backandforward-commands*
+
+:[count]Back							*:Back*
+			Jumps to [count] previous buffer in jump list.
+
+:[count]Forward							*:Forward*
+			Jumps to [count] next buffer in jump list.
+
+
+==============================================================================
+OPTIONS						*backandforward-options*
+
+Every options are containd in *g:backandforward_config* dictionary.
+
+				*g:backandforward_config.auto_map*
+auto_map		(default: 1)
+			If |TRUE|, <A-Left> and <A-Right> are mapped to go
+			back and forward. Set to |FALSE| if you don't need or
+			want to make your own mappings.
+			For mapping, see |backandforward-mappings|.
+
+				*g:backandforward_config.command_prefix*
+command_prefix		(default: "")
+			Specify the prefix for |:Back| and |:Forward|
+			commands. This needs to be start with uppercase. For
+			example, set this to "Baf" if you want to name those
+			commands ":BafBack" and ":BafForward".
+
+				*g:backandforward_config.define_commands*
+define_commands		(default: 1)
+			If |TRUE|, |:Back| and |:Forward| commands are
+			defined. Set to |FALSE| if you don't need those
+			commands.
+
+
+==============================================================================
+MAPPINGS					*backandforward-mappings*
+
+By default, <A-Left> and <A-Right> are mapped to go back and forward. Also,
+following normal-mode mappings are defined for your own mappings.
+
+					*<Plug>(backandforward-back)*
+<Plug>(backandforward-back)
+			Same as |:Back|.
+
+					*<Plug>(backandforward-forward)*
+<Plug>(backandforward-forward)
+			Same as |:Forward|.
+
+
+==============================================================================
+MAYBE FAQ					*backandforward-faq*
+
+------------------------------------------------------------------------------
+Q:	:Back goes wrong way.
+
+A:	This plugin just does |CTRL-O| and |CTRL-I| in buffer units. Since the
+	jump list changes very dynamically as you move the cursor, :Back will
+	go confusing way after you go back and jump (|jump-motions|) to a new
+	position.
+
+
+ vim:tw=78:ts=8:noet:ft=help:norl:
