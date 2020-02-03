@@ -25,13 +25,17 @@ let s:config = g:backandforward_config
 
 if s:config.define_commands
   let s:prefix = s:config.command_prefix
-  execute 'command! -count=1 ' . s:prefix . 'Back call backandforward#nextBuffer(-<count>)'
-  execute 'command! -count=1 ' . s:prefix . 'Forward call backandforward#nextBuffer(<count>)'
+  execute 'command! -count=1'
+        \ s:prefix . 'Back call backandforward#nextBuffer(-<count>)'
+  execute 'command! -count=1'
+        \ s:prefix . 'Forward call backandforward#nextBuffer(<count>)'
   unlet s:prefix
 endif
 
-nnoremap <silent><expr> <Plug>(backandforward-back) '<C-\><C-N>' . backandforward#nextBufferCommand(-v:count1)
-nnoremap <silent><expr> <Plug>(backandforward-forward) '<C-\><C-N>' . backandforward#nextBufferCommand(v:count1)
+nnoremap <silent><expr> <Plug>(backandforward-back)
+      \ '<C-\><C-N>' . backandforward#nextBufferCommand(-v:count1)
+nnoremap <silent><expr> <Plug>(backandforward-forward)
+      \ '<C-\><C-N>' . backandforward#nextBufferCommand(v:count1)
 
 if s:config.auto_map
   nmap <A-Left> <Plug>(backandforward-back)

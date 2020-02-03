@@ -23,7 +23,9 @@ function! backandforward#nextBufferCommand(count) abort
     return ''
   endif
 
-  let bufnr = bufnr()
+  " Get current bufnr that jumplist implies.
+  let bufnr = jumps[min([jumplist[1], len(jumps) - 1])].bufnr
+
   let remain = a:count
   while remain != 0
     while dest >= 0 && dest < len(jumps) && bufnr == jumps[dest].bufnr
@@ -38,10 +40,7 @@ function! backandforward#nextBufferCommand(count) abort
     let remain -= direction
   endwhile
 
-  let dest =
-        \ dest < 0 ? 0 :
-        \ dest >= len(jumps) ? len(jumps) - 1 :
-        \ dest
+  let dest = min([max([dest, 0]), len(jumps) - 1])
 
   if g:backandforward_config.always_last_pos
     let next = dest + 1
@@ -56,10 +55,10 @@ function! backandforward#nextBufferCommand(count) abort
     return ''
   endif
 
-  if direction >= 0
-    return jumpCount . "\<C-I>"
-  else
+  if direction < 0
     return jumpCount . "\<C-O>"
+  else
+    return jumpCount . "\<C-I>"
   endif
 endfunction
 
