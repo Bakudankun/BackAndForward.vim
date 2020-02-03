@@ -34,7 +34,7 @@ function! backandforward#nextFile(count) abort
         \ dest >= len(jumps) ? len(jumps) - 1 :
         \ dest
 
-  if get(g:backandforward_config, 'always_last_pos', 1)
+  if g:backandforward_config.always_last_pos
     let next = dest + 1
     while next < len(jumps) && bufnr == jumps[next].bufnr
       let dest = next
