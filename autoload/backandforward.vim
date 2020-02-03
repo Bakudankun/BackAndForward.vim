@@ -4,14 +4,23 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 
-function! backandforward#nextFile(count) abort
+function! backandforward#nextBuffer(count) abort
+  let cmd = backandforward#nextBufferCommand(a:count)
+
+  if cmd != ''
+    execute 'normal!' cmd
+  endif
+endfunction
+
+
+function! backandforward#nextBufferCommand(count) abort
   let jumplist = getjumplist()
   let jumps = jumplist[0]
   let direction = a:count >= 0 ? 1 : -1
   let dest = jumplist[1] + direction
 
   if dest < 0 || dest >= len(jumps)
-    return
+    return ''
   endif
 
   let bufnr = bufnr()
@@ -44,13 +53,13 @@ function! backandforward#nextFile(count) abort
 
   let jumpCount = (dest - jumplist[1]) * direction
   if jumpCount <= 0
-    return
+    return ''
   endif
 
   if direction >= 0
-    execute 'normal! ' . jumpCount . "\<C-I>"
+    return jumpCount . "\<C-I>"
   else
-    execute 'normal! ' . jumpCount . "\<C-O>"
+    return jumpCount . "\<C-O>"
   endif
 endfunction
 
