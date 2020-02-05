@@ -9,7 +9,6 @@ License: The Unlicense
 CONTENTS					*backandforward-contents*
 
 INTRODUCTION					|backandforward|
-REQUIREMENTS					|backandforward-requirements|
 COMMANDS					|backandforward-commands|
 OPTIONS						|backandforward-options|
 MAPPINGS					|backandforward-mappings|
@@ -64,8 +63,9 @@ define_commands		(default: 1)
 ==============================================================================
 MAPPINGS					*backandforward-mappings*
 
-By default, <A-Left> and <A-Right> are mapped to go back and forward. Also,
-following normal-mode mappings are defined for your own mappings.
+By default, <A-Left> and <A-Right> are mapped to go back and forward. See
+|g:backandforward_config.auto_map| if you don't need them. You can create your
+own mappings with following normal-mode mappings.
 
 					*<Plug>(backandforward-back)*
 <Plug>(backandforward-back)
