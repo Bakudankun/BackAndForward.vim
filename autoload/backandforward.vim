@@ -23,8 +23,11 @@ function! backandforward#nextBufferCommand(count) abort
     return ''
   endif
 
-  " Get current bufnr that jumplist implies.
-  let bufnr = jumps[min([jumplist[1], len(jumps) - 1])].bufnr
+  if jumplist[1] >= len(jumps)
+    let bufnr = bufnr()
+  else
+    let bufnr = jumps[jumplist[1]].bufnr
+  endif
 
   let remain = a:count
   while remain != 0
