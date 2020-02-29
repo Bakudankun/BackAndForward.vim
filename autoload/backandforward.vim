@@ -24,7 +24,7 @@ function! backandforward#nextBufferCommand(count) abort
   endif
 
   if jumplist[1] >= len(jumps)
-    let bufnr = bufnr()
+    let bufnr = bufnr('')
   else
     let bufnr = jumps[jumplist[1]].bufnr
   endif
