@@ -18,10 +18,10 @@ MAYBE FAQ					|backandforward-faq|
 ==============================================================================
 INTRODUCTION					*backandforward*
 
-BackAndForward is a simple plugin that adds |:Back| and |:Forward| commands
-that do |CTRL-O| and |CTRL-I|, but in buffer units. They are like going back
-and forward in web browsers. Also, <A-Left> and <A-Right> are mapped to go
-back and forward by default.
+BackAndForward is a simple plugin to add |:Back| and |:Forward| commands that
+do |CTRL-O| and |CTRL-I|, but in buffer units. They are like going back and
+forward in web browsers. Also, <A-Left> and <A-Right> are mapped to go back
+and forward by default.
 
 
 ==============================================================================
@@ -82,10 +82,9 @@ MAYBE FAQ					*backandforward-faq*
 ------------------------------------------------------------------------------
 Q:	:Back goes wrong way.
 
-A:	This plugin just does |CTRL-O| and |CTRL-I| in buffer units. Since the
-	jump list changes very dynamically as you move the cursor, :Back will
-	go confusing way after you go back and jump (|jump-motions|) to a new
-	position.
+A:	By defalt, the jump list changes very dynamically as you move the
+	cursor. It is recommended to set 'jumpoptions' to "stack" to make the
+	jump list more predictable.
 
 
  vim:tw=78:ts=8:noet:ft=help:norl:
